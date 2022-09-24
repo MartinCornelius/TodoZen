@@ -1,3 +1,4 @@
+using TodoZen.Data;
 using TodoZen.Menu;
 
 namespace TodoZen.Todo;
@@ -11,6 +12,9 @@ public class TodosList : MenuItem
   public override void Select()
   {
     TodosList _menu = new TodosList("List of all todos");
+
+    FileContext fc = new FileContext();
+    Program._todos = fc.GetAllTodos();
 
     foreach (TodoItem todo in Program._todos)
     {
