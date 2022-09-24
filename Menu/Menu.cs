@@ -21,7 +21,8 @@ public class MainMenu
   public virtual void Start()
   {
     _running = true;
-    _menuItems.ElementAt(0).Highlighted = true;
+    if (_menuItems.ElementAt(0) != null)
+      _menuItems.ElementAt(0).Highlighted = true;
 
     do
     {
