@@ -1,4 +1,5 @@
 using TodoZen.Menu;
+using TodoZen.Data;
 
 namespace TodoZen.Todo;
 
@@ -14,6 +15,7 @@ public class TodoItem : MenuItem
 
   public override void Select()
   {
+    FileContext fc = new FileContext();
     if (this.Done == true)
     {
       this.Done = false;
@@ -22,5 +24,6 @@ public class TodoItem : MenuItem
     {
       this.Done = true;
     }
+    fc.UpdateTodos(this);
   }
 }

@@ -73,6 +73,7 @@ public class MainMenu
       case ConsoleKey.DownArrow:
         MoveDown();
         break;
+      case ConsoleKey.Spacebar:
       case ConsoleKey.Enter:
         _menuItems.ElementAt(_selectedIndex).Select();
         break;

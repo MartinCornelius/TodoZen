@@ -18,7 +18,7 @@ public class FileContext
     using StreamReader sr = new StreamReader(fs);
 
     string line;
-    while ((line = sr.ReadLine()) != null)
+    while ((line = sr.ReadLine()!) != null)
     {
       string[] parameters = line.Split("|");
       TodoItem todo = new TodoItem(parameters[1])
@@ -37,5 +37,21 @@ public class FileContext
     using StreamWriter sw = new StreamWriter(fs);
 
     sw.WriteLine($"{todo.Done}|{todo.Content}");
+  }
+
+  public void UpdateTodos(TodoItem todo) 
+  {
+    List<TodoItem> _todos = GetAllTodos();
+    for(int i = 0; i < _todos.Count; i++) {
+      if(_todos[i].Content == todo.Content)
+        _todos[i].Done = _todos[i].Done == true ? false : true;
+    }
+
+    using FileStream fs = new FileStream(PathToFile, FileMode.Create);
+    using StreamWriter sw = new StreamWriter(fs);
+
+    foreach (TodoItem _todo in _todos) {
+      sw.WriteLine($"{_todo.Done}|{_todo.Content}");
+    }
   }
 }
